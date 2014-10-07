@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <!-- Le styles -->
+    <title>DakarParties</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<%= stylesheet_link_tag    "application", :media => "all" %>
+  	<%= javascript_include_tag "application" %>
+  	<%= csrf_meta_tags %>
+  	<%= yield(:head) %>
+    <style type="text/css">
+      body {
+        padding-top: 0px;
+        width: 100%;
+        color:#000;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-top" style="border-top:4px solid #044d47; height:80px; width:100%">
+      <div class="navbar-inner">
+          <div class="container">
+          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <span class="brand" > <%= link_to image_tag("Dp.png"), root_path%></span>
+          <div class="btn-group pull-right">
+            
+          </div>
+          <div class="container nav-collapse">
+            <!--/ something else -->
+                <%=image_tag("banDP.png")%><%=image_tag("banDP.png")%>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="subnav" style="background-color:#931869; width:95%;margin-bottom:5px;border:1px solid #044d47; ">
+          <ul class="nav nav-pills">
+            
+            <li><%=link_to 'Accueil', root_path%></li>
+            <li class="dropdown" class="menu1">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
+                <i class="icon-calendar icon-white"></i> Evenements
+                <b class="caret"></b>
+            </a>
+              <ul class="dropdown-menu">
+                <li><%=link_to 'Du jour', root_path%></li>
+                <li class="divider"></li>
+                <li><%=link_to 'De la semaine', root_path%></li>
+                <li class="divider"></li>
+                <li><%=link_to 'Du mois', root_path%></li>
+
+              </ul>
+            </li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown" class="menu1">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
+                <i class="icon-headphones icon-white"></i> Actu Musique
+                <b class="caret"></b>
+            </a>
+              <ul class="dropdown-menu">
+                <li><%=link_to 'Evenements', root_path%></li>
+                <li><%=link_to 'Evenements', root_path%></li>
+                <li><%=link_to 'Evenements', root_path%></li>
+                <li class="divider"></li>
+                <li><%=link_to 'Evenements', root_path%></li>
+              </ul>
+            </li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown" class="menu1">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
+                <i class="icon-list-alt icon-white"></i> Espace Annonces
+                <b class="caret"></b>
+            </a>
+              <ul class="dropdown-menu">
+                <li><%=link_to 'Categorie annonce1', root_path%></li>
+                <li><%=link_to 'Categorie annonce2', root_path%></li>
+                <li><%=link_to 'Categorie annonce3', root_path%></li>
+                <li class="divider"></li>
+                <li><%=link_to 'Categorie annonce', root_path%></li>
+              </ul>
+            </li>
+            <li class="divider-vertical"></li>
+            
+            <li style="color:#fff"> <%=link_to 'Partenaires', root_path%></li>
+            <li> <%=link_to 'Actu Musique', root_path%></li>
+            <li> <%=link_to 'Gallerie', root_path%></li>
+
+          </ul>
+        </div>
+      </div>
+
+<!--/.tonux fin -->
+    <div id="main" role="main">
+      <div class="container-fluid">
+        <div class="row-fluid">
+
+            <div class="span2" style="width:15%"> 
+
+              <div class="well sidebar-nav" style="background-color:#931869; color: #fff; width:130%; border:3px solid #044d47">
+                  <ul class="nav nav-pills nav-stacked" style="text-align: justify; padding:10px">
+                    <li class="active">
+                        <a href="#"><i class="icon-hand-right icon-white"></i> Big évenement du jour!</a>
+                        <marquee><h5>Soirée de Youssou Ndour</h5></marquee>
+                        <%= image_tag("you2.jpg")%>
+                        <h5>heure: 23h</h5>
+                        <h5>Lieu:Thiossane</h5>
+                        <h5>Entrée:5 000f</h5>
+                    </li>
+                  </ul>
+
+                </div>
+
+                <div class="well sidebar-nav" style="background-color:#931869; width:130%; border:3px solid #044d47" >
+                    <ul class="nav nav-pills nav-stacked" style="text-align: justify;padding:10px">
+                      <li class="active">
+                        <a href="#"><marquee><i class="icon-bullhorn icon-white"></i> Lou Khew !!!</marquee></a>
+                      </li>
+                      <li class=""> </li>
+                    </ul>
+                </div>
+
+            	<div class="well sidebar-nav" style="background-color:#931869; width:130%; border:3px solid #044d47" >
+                  <ul class="nav nav-pills nav-stacked" style="text-align: justify; padding:10px">
+                    <li class="active" >
+                        <a href="#"><i class="icon-search icon-white"></i> Recherche</a>
+                      </li>
+                               
+                  </ul>
+
+              </div>
+
+          <% if user_signed_in? %>
+          <% user= current_user%>
+          <div class="well sidebar-nav" style="background-color:#931869;color: #fff;width:130%; border:3px solid #044d47" >
+                    <ul class="nav nav-pills nav-stacked" style="text-align: justify;padding:10px">
+                      <li class="active">
+                        <a href="#"><i class="icon-user icon-white"></i>Bienvenue <%= current_user.login %></a>
+                      </li>
+                      <li class=""><%= link_to "Mon Profil", user, :class => 'label' %></li>
+                      <li class=""><%= link_to "Modifier Profil", edit_user_path(user), :class => 'label' %></li>
+                      <li class=""><a href-"" style="color:#fff; font-size:1.2em"></a></li>
+                      <li ><%= link_to "Deconnexion", destroy_user_session_path, :method => :delete, :class => 'btn btn-large', :notice => 'nice' %></li>
+
+                    </ul>
+            </div>
+            <% else %>
+            <div class="well sidebar-nav" style="background-color:#931869;color: #fff;width:130%; border:3px solid #044d47" >
+                    <ul class="nav nav-pills nav-stacked" style="text-align: justify;padding:10px">
+                      <li class="active">
+                        <a href="#"><i class="icon-user icon-white"></i>Espace membre</a>
+                      </li>
+                      <li class=""><%= link_to "Se connecter", new_user_session_path, :class => 'label' %></li>
+                      <li class=""><%= link_to "S'inscrire", new_user_registration_path, :class => 'label'%></li>
+
+
+                    </ul>
+            </div>
+            <% end %>
+
+
+            <% if (user_signed_in? and current_user.admin?) %>
+          <% user= current_user%>
+          <div class="well sidebar-nav" style="background-color:#931869;color: #fff;width:130%; border:3px solid #044d47" >
+                    <ul class="nav nav-pills nav-stacked" style="text-align: justify;padding:10px">
+                      <li class="active">
+                        <a href="#"><i class="icon-user icon-white"></i>Espace Administration</a>
+                      </li>
+                      <li class=""><%= link_to "Espace Actualites", actualites_path,:class => 'btn btn-large' %></li>
+                      <li class=""><%= link_to "Espace Annonces", annonces_path,:class => 'btn btn-large '%></li>
+                      <li class=""><%= link_to "Espace Evenements", events_path,:class => 'btn btn-large' %></li>
+                    </ul>
+            </div>
+            <% end %>
+
+              <% if (user_signed_in? and current_user.adminEvent?) %>
+          <% user= current_user%>
+          <div class="well sidebar-nav" style="background-color:#931869;color: #fff;width:130%; border:3px solid #044d47" >
+                    <ul class="nav nav-pills nav-stacked" style="text-align: justify;padding:10px">
+                      <li class="active">
+                        <a href="#"><i class="icon-user icon-white"></i>Espace Annonces</a>
+                      </li>
+                      <li class=""><%= link_to "Creer annonce", new_annonce_path, :class => 'btn btn-large'%></li>
+                      <li class=""><%= link_to "Liste des annonces", annonces_path,:class => 'btn btn-large'%></li>
+                      <li class=""><%= link_to "Créer catégory", new_category_annonce_path,:class => 'btn btn-large'%></li>
+                      <li class=""><%= link_to "Catégory des annonces", category_annonces_path,:class => 'btn btn-large'%></li>
+                    </ul>
+            </div>
+            <% end %>
+
+            </div><!--/span-->
+
+            <div class="span10" style="padding-left:7%; margin-left:5%; width:80%; text-align:justify">
+              <%= yield %>
+            </div>
+      </div><!--/row-fluid-->
+      </div><!-- /container -->
+    </div>
+    <footer id="foot" >
+    <div class="well sidebar-nav" style="background-color:#931869;margin-left:2%;margin-right:2%;border:3px solid #44d47" >
+      <table class="table table-bordered">
+          <tr>
+            <td><%=image_tag("banDP.png")%></td>
+            <td><%=image_tag("banDP.png")%></td>
+            <td><%=image_tag("banDP.png")%></td>
+            <td><%=image_tag("banDP.png")%></td>
+          </tr>
+      </table>
+      </div>
+    </footer>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript">
+    	 $(".carousel").carousel()
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-19175637-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+
+  </body>
+</html>

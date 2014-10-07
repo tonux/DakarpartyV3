@@ -1,0 +1,55 @@
+<h2>Inscription</h2>
+<div class="well " style="background-color:#fff; color:#000; width:70%">
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <% if @user.errors.any? %>
+
+  <div class="alert alert-block alert-error fade in">
+            <button class="close" data-dismiss="alert">&times;</button>
+            <h4 class="alert-heading">Erreur!</h4>
+            <p><%= devise_error_messages! %></p>
+  </div>
+  <%end%>
+
+  <div><%= f.label :Nom %>
+  <%= f.text_field :nom %></div><br/>
+
+  <div><%= f.label :Prenom %>
+  <%= f.text_field :prenom %></div><br/>
+
+  <div><%= f.label :Naissance %>
+  <%= f.date_select :datenaiss, :start_year => Date.today.year-15, :end_year => 1950%></div><br/>
+
+  <div><%= f.label :sexe %>
+    <span>Masculin</span>
+    <%= f.radio_button(:sexe, true) %>
+      <span>Feminin</span>
+    <%= f.radio_button(:sexe, false) %>
+  </div><br/>
+
+  <div><%= f.label :Telephone %>
+  <%= f.text_field :telephone %></div><br/>
+
+   <div><%= f.label :adresse %>
+  <%= f.text_field :adresse %></div>
+
+  <div><%= f.label :Pseudo %>
+  <%= f.text_field :login %></div><br/>
+
+  <div><%= f.label :email %>
+  <%= f.email_field :email %></div><br/>
+
+  <div><%= f.label :password %>
+  <%= f.password_field :password %></div><br/>
+
+  <div><%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %></div><br/>
+
+
+
+
+
+
+  <div><%= f.submit "Valider", :class => ' btn btn-primary btn-large' %></div>
+<% end %>
+
+</div>

@@ -1,0 +1,321 @@
+                             <!-- Carousel
+    ================================================== -->
+
+      <div class="row-fluid" style="">
+
+            <div class="span9" style="width:73%">
+              <% if flash[:notice] and  (user_signed_in?) %>
+                <div class="alert alert-success">
+                  <a class="close" data-dismiss="alert">×</a>
+                  <%= raw flash[:notice] %>
+                </div>
+
+              <% end %>
+              <% if flash[:alert] %>
+                <div class="alert alert-success">
+                  <a class="close" data-dismiss="alert">×</a>
+                  <%= raw flash[:alert] %>
+                </div>
+
+              <% end %>
+
+              <div id="myCarousel" class="carousel slide" style="border:2px solid #044d47">
+                <div class="carousel-inner">
+                  <div class="item active" style="">
+                     <%=link_to image_tag("slide4.jpg"), root_path, :title => 'dakarParties'%>
+
+                  </div>
+                  <div  class="item" style="">
+                    <%=link_to image_tag("slide1.jpg"), root_path, :title => 'dakarParties'%>
+
+                  </div>
+                  <div class="item" style="">
+                    <%=link_to image_tag("slide3.jpg"), root_path, :title => 'dakarParties'%>
+
+                  </div>
+                  <div class="item" style="">
+                    <%=link_to image_tag("slide2.jpg"), root_path, :title => 'dakarParties'%>
+
+                  </div>
+
+                </div>
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+              </div>
+
+              <div class="tabbable" style="margin-bottom: 18px;">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a href="#tab1" data-toggle="tab" style="color:#044d47">Aujourd'hui!</a></li>
+                  <li class=""><a href="#tab2" data-toggle="tab" style="color:#044d47">Cette semaine!</a></li>
+                  <li class=""><a href="#tab3" data-toggle="tab" style="color:#044d47">Ce mois!</a></li>
+                </ul>
+                <div class="tab-content" style="padding-bottom: 9px; border-bottom: 1px solid #ddd;">
+                  <div class="tab-pane active" id="tab1">
+
+                    <% event_days=Event.all %>
+
+                    <% if !event_days.nil?   %>
+                    <% event_days.each do |event_day| %>
+                        <% if event_day.date_debut == Date.today %>
+                          <% lieu=Lieu.find_by_id(event_day.lieu_id)%>
+                          <% structure=Structure.find_by_id(event_day.structure_id)%>
+                      <table style="margin-bottom:10px;">
+                      <tr >
+                        <td><%= image_tag(event_day.picture_url, :width => 240, :height => 120) if event_day.picture.present? %></td>
+                     <div class="item" style="">
+                    <%=link_to image_tag("colliers.jpg"), root_path, :title => 'dakarParties'%>
+
+                  </div>   <td>
+                          <table class="" style="">
+                             <% modal="myModal"+event_day.id.to_s%>
+                            <tr>
+                                <td><span style="font-size:1.3em;"><%= event_day.titleEvent %></span></td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-size:1.3em;">Le <%= event_day.date_debut.strftime("%d %M %Y") %></span></td>
+                            </tr>
+                            <tr>
+                            <td><span style="font-size:1.3em;">Lieu: <%= lieu.nomLieu%></span></td>
+                            </tr>
+                              <tr>
+                                        <% hmodal="#"+modal %>
+                                        <td><span class="btn btn-mini btn-primary" data-toggle="modal" href=<%= hmodal%>> <a>Voir l'événement</a> </span></td>
+                              </tr>
+
+
+                          </table>
+                        </td>
+                      </tr>
+                      </table>
+
+
+                      <div id=<%=modal%> class="modal hide fade">
+                      <div class="modal-header">
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h3>Details de l'événement</h3>
+                      </div>
+                      <div class="modal-body">
+
+                                    <table class="table">
+                                      <tr>
+                                  <td><%= image_tag(event_day.picture_url, :width => 240, :height => 120) if event_day.picture.present? %></td>
+                                  </tr>
+                                      <tr>
+                                          <td><%= event_day.titleEvent %></td>
+                                      </tr>
+                                      <tr>
+                                          <td><%= event_day.descEvent %></td>
+                                      </tr>
+                                      <tr>
+                                          <td><span style="font-size:1.2em">Date: </span> <%= event_day.date_debut %></td>
+                                      </tr>
+                                      <tr>
+                                          <td><span style="font-size:1.2em">Heure: </span><%= event_day.heure_debut.strftime("%Ih : %M")%></td>
+                                      </tr>
+                                      <tr>
+                                      <td><span style="font-size:1.2em">Lieu: </span><%= lieu.nomLieu%></td>
+                                      </tr>
+
+                                      <tr>
+                                          <td><span style="font-size:1.2em">Heure: </span><%= event_day.heure_fin.strftime("%Ih : %M") %></td>
+                                      </tr>
+                                      <tr>
+                                          <td><span style="font-size:1.2em">nomde de personne: </span><%= event_day.nombrePersonne %></td>
+                                      </tr>
+
+                                </table>
+                      </div>
+                      <div class="modal-footer">
+                        <a href="#" class="btn btn-primary" data-dismiss="modal" >Close</a>
+
+                      </div>
+                    </div>
+                      <% end %>
+                      <% end %>
+                    <% else %>
+
+
+                    <% end %>
+
+
+                  </div>
+                  <div class="tab-pane" id="tab2">
+
+
+                    <% if !event_days==nil?%>
+                    <% event_days.each do |event_day| %>
+                    <% if (event_day.date_debut >=Date.today) and (event_day.date_debut <= event_day.date_debut.next.at_end_of_week)%>
+                          <% lieu=Lieu.find_by_id(event_day.lieu_id)%>
+                          <% structure=Structure.find_by_id(event_day.structure_id)%>
+                      <table style="margin-bottom:10px;">
+                      <tr >
+                        <td><%= image_tag(event_day.picture_url, :width => 240, :height => 120) if event_day.picture.present? %></td>
+                        <td>
+                          <table class="" style="">
+                             <% modal="myModal1"+event_day.id.to_s%>
+                            <tr>
+                                <td><span style="font-size:1.3em;"><%= event_day.titleEvent %></span></td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-size:1.3em;">Le <%= event_day.date_debut.strftime("%d %M %Y") %></span></td>
+                            </tr>
+                            <tr>
+                            <td><span style="font-size:1.3em;">Lieu: <%= lieu.nomLieu%></span></td>
+                            </tr>
+                              <tr>
+                                        <% hmodal="#"+modal %>
+                                        <td><span class="btn btn-primary btn-mini" data-toggle="modal" href=<%= hmodal%>> <a>Voir l'événement</a> </span></td>
+                              </tr>
+
+                          </table>
+                        </td>
+                      </tr>
+                      </table>
+
+                      <div id=<%=modal%> class="modal hide fade">
+                      <div class="modal-header">
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h3>Details de l'événement</h3>
+                      </div>
+                      <div class="modal-body">
+
+                                    <table class="table">
+                                      <tr>
+                                  <td><%= image_tag(event_day.picture_url, :width => 240, :height => 120) if event_day.picture.present? %></td>
+                                  </tr>
+                                      <tr>
+                                          <td><%= event_day.titleEvent %></td>
+                                      </tr>
+                                      <tr>
+                                          <td><%= event_day.descEvent %></td>
+                                      </tr>
+                                      <tr>
+                                          <td><span style="font-size:1.2em">Date: </span> <%= event_day.date_debut %></td>
+                                      </tr>
+                                      <tr>
+                                          <td><span style="font-size:1.2em">Heure: </span><%= event_day.heure_debut.strftime("%Ih : %M")%></td>
+                                      </tr>
+                                      <tr>
+                                      <td><span style="font-size:1.2em">Lieu: </span><%= lieu.nomLieu%></td>
+                                      </tr>
+
+                                      <tr>
+                     <div class="item" style="">
+                    <%=link_to image_tag("colliers.jpg"), root_path, :title => 'dakarParties'%>
+
+                  </div>                     <td><span style="font-size:1.2em">Heure: </span><%= event_day.heure_fin.strftime("%Ih : %M") %></td>
+                                      </tr>
+                                      <tr>
+                                          <td><span style="font-size:1.2em">nomde de personne: </span><%= event_day.nombrePersonne %></td>
+                                      </tr>
+
+                                </table>
+                      </div>
+                      <div class="modal-footer">
+                        <a href="#" class="btn btn-primary" data-dismiss="modal" >Close</a>
+
+                      </div>
+                    </div>
+                      <% end %>
+                      <% end %>
+                    <% else %>
+
+
+                    <% end %>
+
+                  </div>
+                  <div class="tab-pane" id="tab3">
+
+                    <% if !event_days==nil?%>
+                    <% event_days.each do |event_day| %>
+                    <% if (event_day.date_debut >=Date.today) and (event_day.date_debut <= event_day.date_debut.next.at_end_of_month)%>
+                          <% lieu=Lieu.find_by_id(event_day.lieu_id)%>
+                          <% structure=Structure.find_by_id(event_day.structure_id)%>
+                      <table style="margin-bottom:10px;">
+                      <tr >
+                        <td><%= image_tag(event_day.picture_url, :width => 240, :height => 120) if event_day.picture.present? %></td>
+                        <td>
+                          <table class="" style="">
+                             <% modal="myModal"+event_day.id.to_s%>
+                            <tr>
+                                <td><span style="font-size:1.3em;"><%= event_day.titleEvent %></span></td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-size:1.3em;">Le <%= event_day.date_debut.strftime("%d-%m-%Y") %></span></td>
+                            </tr>
+                            <tr>
+                            <td><span style="font-size:1.3em;">Lieu: <%= lieu.nomLieu%></span></td>
+                            </tr>
+                              <tr>
+                                        <% hmodal="#"+modal %>
+                                        <td><span class="btn btn-success btn-mini" data-toggle="modal" href=<%= hmodal%>> <a>Voir l'événement</a> </span></td>
+                              </tr>
+
+                          </table>
+                        </td>
+                      </tr>
+                      </table>
+                      <% end %>
+                      <% end %>
+                    <% else %>
+
+
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="tabbable" style="margin-bottom: 18px;">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a href="#tab1" data-toggle="tab">Actualites </a></li>
+                </ul>
+                <div class="tab-content" style="padding-bottom: 9px; border-bottom: 1px solid #ddd;">
+                  <div class="tab-pane active" id="tab1">
+
+                    <% actus=Actualite.all%>
+                    <table claww="table">
+                    <% if actus!=nil%>
+                    <% actus.each do |actu| %>
+                      <tr>
+                        <td> <h2><%= link_to actu.titleActu, actualite_path(actu), :class =>'label' %></h2></td>
+                      </tr>
+                      <tr>
+                        <td><%= image_tag(actu.picture_url, :width => 250) if actu.picture.present? %></td>
+                      </tr>
+
+                      <tr>
+                          <td><%= actu.contenu %></td>
+                      </tr>
+                      <tr>
+                          <td>publié le <%= actu.created_at.strftime("%d-%m-%Y") %></td>
+                      </tr>
+                      <% end %>
+                    <% else %>
+
+
+                    <% end %>
+                    </table>
+                  </div>
+
+
+                </div>
+              </div>
+
+
+
+
+            </div><!--/span-->
+
+
+            <%= render :partial => 'home/nav_actu' %>
+    </div><!--/row-->
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.nav-tabs li').first().addClass('active');
+    $('.tab-pane').first().addClass('active');
+  })
+</script>

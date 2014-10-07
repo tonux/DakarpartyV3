@@ -1,0 +1,81 @@
+<%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :login, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :login, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :nom, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :nom, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :prenom, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :prenom, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :datenaiss, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :datenaiss, :class => 'date_select ' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :adresse, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :adresse, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :admin, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :admin, :class => 'check_box' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :adminActu, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :adminActu, :class => 'check_box' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :adminEvent, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :adminEvent, :class => 'check_box' %>
+    </div>
+  </div>
+
+   <div class="control-group"><%= f.label :sexe, :class => 'control-label'  %>
+    <div class="controls">
+    <span>Masculin</span>
+    <%= f.radio_button(:sexe, true) %>
+      <span>Feminin</span>
+    <%= f.radio_button(:sexe, false) %>
+  </div>
+  </div><br/>
+
+
+
+  <div class="control-group">
+    <%= f.label :telephone, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :telephone, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'text_field' %>
+    </div>
+  </div>
+
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                users_path, :class => 'btn' %>
+  </div>
+<% end %>

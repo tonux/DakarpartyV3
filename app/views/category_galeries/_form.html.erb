@@ -1,0 +1,25 @@
+<%= form_for(@category_galery) do |f| %>
+  <% if @category_galery.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category_galery.errors.count, "error") %> prohibited this category_galery from being saved:</h2>
+
+      <ul>
+      <% @category_galery.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :titleCategory %><br />
+    <%= f.text_field :titleCategory %>
+  </div>
+  <div class="field">
+    <%= f.label :desc %><br />
+    <%= f.text_area :desc %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

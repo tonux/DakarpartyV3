@@ -1,0 +1,10 @@
+<div>
+<ul>
+	<% if !@event==nil?%>
+    <% @events.each do |event| %>
+  <li><%= link_to event.titleEvent, 
+    :action => 'show', :id => event.id  %></li>
+  <% end %>
+  <% end %>
+</ul>
+</div>

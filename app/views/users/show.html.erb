@@ -1,0 +1,76 @@
+<div class="row-fluid" style="">
+  <div class="span9" style="width:73%">
+<%- model_class = User -%>
+
+
+<br><br>
+<div class="well  ">
+<div class="row-fluid user-infos cyruxx">
+  <div class="span10 offset1">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h4 class="panel-title">Profil de <%= @user.login %></h4>
+      </div>
+      <div class="panel-body">
+        <div class="row-fluid">
+
+          <div class="">
+            <strong><%= @user.prenom %>  <%= @user.nom %> </strong><br>
+            <table class="table table-condensed table-responsive table-user-information">
+              <tbody>
+              <tr>
+                <td>Rôle utilisateur:</td>
+                <td><%=raw @user.admin ?  "Admin, " :  "" %>  <%=raw @user.adminActu ?  "Admin actualité, " :  ""%>  <%=raw  @user.adminEvent ?  "Admin événement" :  "" %></td>
+              </tr>
+              <tr>
+                <td>Date d'inscription:</td>
+                <td><%= @user.created_at %></td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td><%= @user.email %></td>
+              </tr>
+              <tr>
+                <td>Téléphone</td>
+                <td><%= @user.telephone %></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <% if (user_signed_in? and current_user.admin?) %>
+      <div class="panel-footer">
+        <div class="form-actions">
+
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_user_path(@user), :class => 'btn' %>
+                        <span class="pull-right">
+                           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                                       user_path(@user),
+                                       :method => 'delete',
+                                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                                       :class => 'btn btn-danger' %>
+                           </span>
+
+          <%#= social_share_button_tag(@user.nom, :url => "http://www.facebook.com") %>
+
+
+
+        </div>
+
+
+      </div>
+
+          <% end %>
+    </div>
+  </div>
+</div>
+</div>
+
+
+</div>
+
+<%= render :partial => 'home/nav_actu' %>
+</div>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <!-- Le styles -->
+    <title>GooDiTown</title>
+    <meta charset="utf-8">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<%= stylesheet_link_tag    "application", :media => "all" %>
+  	<%= javascript_include_tag "application" %>
+  	<%= csrf_meta_tags %>
+  	<%= yield(:head) %>
+    <style type="text/css">
+      body {
+        padding-top: 0px;
+        width: 100%;
+        color:#000;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+    </style>
+    <script type="text/javascript">
+//        $(window).load(function(){
+//            test=true;
+//            if(test==true){
+//                $('#myModal').modal('show');
+//                test=false;
+//            }
+//        });
+
+    function checkFirstVisit() {
+    if(document.cookie.indexOf('m_cookie')==-1) {
+        // cookie doesn't exist, create it now
+        $('#myModal').modal('show');
+        document.cookie = 'm_cookie1=1';
+
+    }
+    else {
+        // not first visit, so alert
+        //alert('You refreshed!');
+        //$('#myModal').modal('show');
+
+    }
+}
+
+
+    </script>
+  </head>
+
+  <body onload="checkFirstVisit()">
+  <input type="hidden" name="visit" id="visit" value="" />
+
+  <!--barre de menu-->
+  <div class="navbar navbar-fixed-top    " >
+    <!-- Website Menu -->
+    <ul class="menu clearfix " style="padding-left: 15%" >
+      <li><%= link_to "Acceuil", root_path%></li>
+
+      <li class="divider-vertical"></li>
+      <li> <%=link_to raw("Concert"), root_path%></li>
+      <li> <%=link_to "Spectacles", root_path%></li>
+      <li> <%= link_to "soirée discothéque", root_path%></li>
+
+
+      <li> <%=link_to "Cinéma", root_path%></li>
+      <li> <%=link_to "Festivals", root_path%></li>
+
+    </ul>
+
+    <!--/ Website Menu -->
+  </div>
+  <!-- end barre de menu-->
+  <div class="body-wrap">
+  <div class="content">
+  <div class="" style="margin-top: 60px">
+
+
+    <%= yield %>
+
+  <!-- .row slider  -->
+
+  <!--/ .row slider -->
+
+
+
+  <div class="row">
+    <!-- / Content -->
+
+
+  <!-- / .Content -->
+
+
+    <!-- / nav event -->
+    <!-- / .nav event -->
+
+
+    <!-- / .nav admin -->
+    <!-- / .nav admin -->
+
+
+
+  </div>
+
+  <!-- / .container -->
+  </div><!-- / .content -->
+  </div>
+  </div>
+  </body>
+</html>

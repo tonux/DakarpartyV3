@@ -1,0 +1,48 @@
+<%- model_class = User -%>
+<div class="page-header">
+  <h3>Liste des utilisateurs</h3>
+</div>
+
+<table class="table table-bordered">
+  <tr>
+    <td> Login</td>
+    <td> Nom</td>
+    <td> Prénom</td>
+    <td> Adresse</td>
+    <td> Date inscription</td>
+    <td> sexe</td>
+    <td> Téléphone</td>
+    <td> Email</td>
+    <td>Edit</td>
+    <td>Supprimer</td>
+
+  </tr>
+
+  <% @users.reverse.each do |user| %>
+  <tr>
+    <td><%= link_to user.login, user %></td>
+    <td><%= user.nom %></td>
+    <td><%= user.prenom %></td>
+    <td><%= user.adresse %></td>
+    <td><%=l user.created_at %></td>
+    <td><%=raw user.sexe ? "Gar&ccedil;on" : "Fille" %></td>
+    <td><%= user.telephone %></td>
+    <td><%= user.email %></td>
+    <td><%= link_to t('.edit', :default => t("helpers.links.edit")),
+                    edit_user_path(user), :class => 'btn btn-mini' %></td>
+    <td><%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                    user_path(user),
+                    :method => :delete,
+                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                    :class => 'btn btn-mini btn-danger' %>
+    </td>
+  </tr>
+<% end%>
+</table>
+
+
+
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_user_path,
+            :class => 'btn btn-primary' %>

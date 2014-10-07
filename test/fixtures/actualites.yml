@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  titleActu: MyString
+  contenu: MyString
+  categoryActu: 
+
+two:
+  titleActu: MyString
+  contenu: MyString
+  categoryActu: 

@@ -1,0 +1,22 @@
+<% actus=Actualite.all%>
+<% if !actus==nil?%>
+    <% actus.each do |actu| %>
+
+        <div class="tab-pane fade in active clearfix" >
+          <div class="tab-image pull-left">
+            <%= image_tag(actu.picture_url, :width => 150, :height => 150) if actu.picture.present? %>
+          </div>
+          <h4><%=link_to actu.titleActu, actu%></h4>
+          <p>
+            <%= actu.contenu[0..230].gsub(/\s\w+\s*$/, '...')%>
+            <%=link_to raw('<button class="btn btn-round"> Lire la suite </button>') , actu %>
+          </p>
+
+        </div>
+        <hr/>
+
+<% end %>
+
+<% end %>
+
+<%= link_to raw('<span class="btn btn-primary" style="margin-left: 40%"> Voir Tout <i class="icon-plus icon-white" ></i></span>'), actualites_path%>

@@ -1,0 +1,92 @@
+<div class="col-sm-7">
+  <!-- .row -->
+  <div class="row">
+
+    <div class="col-sm-12">
+
+      <!-- tabs -->
+      <div class="tabs-framed styled">
+        <div class="inner">
+
+          <ul class="tabs clearfix">
+            <li class="active"><a href="#events" data-toggle="tab">Aujourd'hui</a></li>
+            <li><a href="#reminder" data-toggle="tab">Cette semaine</a></li>
+            <li><a href="#starred" data-toggle="tab"><sup class="note">3</sup>Ce mois</a></li>
+          </ul>
+          <div class="tab-content boxed">
+            <div class="tab-pane fade in active clearfix" id="events">
+              <%= render :partial => 'home/events_jour' %>
+            </div>
+            <div class="tab-pane fade clearfix" id="reminder">
+              <%= render :partial => 'home/events_week' %>
+
+            </div>
+            <div class="tab-pane fade clearfix" id="starred">
+              <%= render :partial => 'home/events_mois' %>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+      <!--/ tabs -->
+
+    </div>
+
+    <div class="col-sm-12">
+      <!-- tabs -->
+      <div class="tabs-framed styled">
+        <div class="inner">
+          <div >
+            <a href="#" class="btn btn-blue btn-middle"><span>Actualités</span></a>
+
+          </div>
+          <div class="tab-content boxed">
+            <%= render :partial => 'home/actu' %>
+
+
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!--/ tabs -->
+
+    </div>
+
+  </div>
+  <!-- / .row -->
+  <br>
+  <!-- .row -->
+  <div class="row">
+    <div class="col-sm-7">
+
+    </div>
+    <div class="col-sm-5">
+      <!-- row level 2 -->
+      <div class="row knobs">
+        <div class="col-sm-12 col-xs-6">
+
+
+
+        </div>
+        <div class="col-sm-12 col-xs-6">
+
+        </div>
+      </div>
+      <!-- row level 2 -->
+    </div>
+  </div>
+  <!--/ .row -->
+  <br><br><br>
+  <!-- .row -->
+  <div class="row">
+
+
+  </div>
+  <!--/ .row -->
+
+</div>

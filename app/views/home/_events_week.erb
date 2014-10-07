@@ -1,0 +1,71 @@
+<% event_days=Event.all %>
+<% compte = 0%>
+<% if !event_days==nil?%>
+                    <% event_days.each do |event_day| %>
+                    <% if (event_day.date_debut >=Date.today) and (event_day.date_debut <= event_day.date_debut.next.at_end_of_week)%>
+                          <% lieu=Lieu.find_by_id(event_day.lieu_id)%>
+                           <%compte +=1%>
+                          <% structure=Structure.find_by_id(event_day.structure_id)%>
+
+                        <% modal="myModal"+event_day.id.to_s%>
+                        <% hmodal="#"+modal %>
+
+
+                        <div class="tab-image pull-left"><%= image_tag(event_day.picture_url, :width => 170, :height => 120) if event_day.picture.present? %></div>
+                        <h4><%= event_day.date_debut.strftime("%A %d %B") %></h4>
+                        <p><%=  event_day.titleEvent %> </p>
+                        <a  class="btn btn-round" data-toggle="modal" href="<%= hmodal%>"><span>voir</span></a>
+                        <hr/>
+
+                      <div id=<%=modal%> class="modal hide fade">
+                      <div class="modal-header">
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h3>Details de l'événement</h3>
+                      </div>
+                      <div class="modal-body">
+
+                                    <table class="table">
+                                      <tr>
+                                  <td><%= image_tag(event_day.picture_url, :width => 240, :height => 120) if event_day.picture.present? %></td>
+                                  </tr>
+                                      <tr>
+                                          <td><%= event_day.titleEvent %></td>
+                                      </tr>
+                                      <tr>
+                                          <td><%= event_day.descEvent %></td>
+                                      </tr>
+                                      <tr>
+                                          <td><span style="font-size:1.2em">Date: </span> <%= event_day.date_debut %></td>
+                                      </tr>
+                                      <tr>
+                                          <td><span style="font-size:1.2em">Heure: </span><%= event_day.heure_debut.strftime("%Ih : %M")%></td>
+                                      </tr>
+                                      <tr>
+                                      <td><span style="font-size:1.2em">Lieu: </span><%= lieu.nomLieu%></td>
+                                      </tr>
+
+                                      <tr>
+                                         <td><span style="font-size:1.2em">Heure: </span><%= event_day.heure_fin.strftime("%Ih : %M") %></td>
+                                      </tr>
+                                      <tr>
+                                          <td><span style="font-size:1.2em">nomde de personne: </span><%= event_day.nombrePersonne %></td>
+                                      </tr>
+
+                                </table>
+                      </div>
+                      <div class="modal-footer">
+                        <a href="#" class="btn btn-primary" data-dismiss="modal" >Close</a>
+
+                      </div>
+                    </div>
+                      <% end %>
+                      <% end %>
+                    <% if compte ==0 %>
+                        <div class="alert alert-success">
+                          <a class="close" data-dismiss="alert"></a>
+                          <span style="font-size: 1.5em; font-family: 'Glyphicons Halflings'" > Hello! Nous avons pas d'événement pour ce mois <%= image_tag("smile2.png", :width => 50)%></span>
+                        </div>
+                    <% end %>
+
+
+                    <% end %>

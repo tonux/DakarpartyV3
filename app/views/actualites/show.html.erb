@@ -1,0 +1,33 @@
+<%- model_class = Actualite -%>
+<div class="row" style="margin-top: 60px">
+
+  <div class="col-sm-7" >
+<p>
+  <%= image_tag(@actualite.picture_url, :width => 600, :class => "style_image") if @actualite.picture.present? %>
+  <h5 style="text-align: center"><%= @actualite.titleActu %></h5>
+  <p style="padding-left: 0%; text-align: justify">
+    <%= @actualite.contenu %>
+  </p>
+</p>
+
+
+<% if user_signed_in? and (current_user.admin? || current_user.adminActu?) %>
+
+<div class="">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              actualites_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_actualite_path(@actualite), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              actualite_path(@actualite),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
+<% end %>
+
+</div>
+
+<%= render :partial => 'home/nav_actu' %>
+
+</div>

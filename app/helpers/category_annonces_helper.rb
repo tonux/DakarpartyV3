@@ -1,0 +1,2 @@
+module CategoryAnnoncesHelper
+end

@@ -1,0 +1,65 @@
+<%- model_class = Event -%>
+<div class="page-header">
+  <h3>Listes des événements</h3>
+</div>
+
+
+<% if @events.size == 0 %>
+    <div class="alert alert-success">
+      <a class="close" data-dismiss="alert"></a>
+      Liste des événements est vide.
+
+      <%= link_to t('.new', :default => t("helpers.links.new")),
+                  new_event_path,
+                  :class => 'btn btn-primary' %>
+    </div>
+<% else %>
+
+<table class="table ">
+  <tr>
+    <td>Détails</td>
+    <td>Evénement</td>
+    <td>Description</td>
+    <td>Date début</td>
+    <td>Date Fin</td>
+    <td>Editer</td>
+    <td>Supprimer</td>
+  </tr>
+
+  <% @events.reverse.each do |event| %>
+      <%lieu=Lieu.find_by_id(event.lieu_id)%>
+      <% structure=Structure.find_by_id(event.structure_id)%>
+      <% category=CategoryEvent.find_by_id(event.categoryEvent_id)%>
+      <tr>
+        <td> <span style="width: 20%"><%= link_to image_tag(event.picture_url, :width => 100, :height => 100),event_path(event) if event.picture.present? %></span></td>
+        <td><%= event.titleEvent %></td>
+        <td><%= event.descEvent %></td>
+        <td><%= event.date_debut %></td>
+        <td><%= event.date_fin %></td>
+
+
+
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_event_path(event), :class => 'btn btn-mini' %>
+
+        </td>
+        <td>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      event_path(event),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+  <% end %>
+
+
+</table>
+
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_event_path,
+            :class => 'btn btn-primary' %>
+
+<% end %>

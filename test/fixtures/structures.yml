@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  nomStructure: MyString
+  adresse: MyString
+  telephone: MyString
+  email: MyString
+  descStructure: MyText
+
+two:
+  nomStructure: MyString
+  adresse: MyString
+  telephone: MyString
+  email: MyString
+  descStructure: MyText

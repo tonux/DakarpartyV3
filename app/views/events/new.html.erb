@@ -1,0 +1,96 @@
+<%- model_class = Event -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+                                 :default => "New #{model_class.model_name.human}") %></h1>
+</div>
+<%= form_for @event, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :categoryEvent_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :categoryEvent_id, options_for_select(CategoryEvent.all.map { |categoryEvent| [categoryEvent.titleCategory, categoryEvent.id] }) %>
+      <% # categoryEvent_array = CategoryEvent.all.map { |categoryEvent| [categoryEvent.titleCategory, categoryEvent.id] } %>
+      <%#= options_for_select(categoryEvent_array) %>
+      <%#= f.select(:categoryEvent_id, options_for_select(categoryEvent_array)) %>
+
+
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :titleEvent, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :titleEvent, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :descEvent, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :descEvent, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :nombrePersonne, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :nombrePersonne, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :date_debut, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :date_debut, :class => 'date_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :date_fin, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :date_fin, :class => 'date_select' %>
+    </div>
+  </div>
+ 
+  <div class="control-group">
+    <%= f.label :structure_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :structure_id, options_for_select(Structure.all.map { |structure| [structure.nomStructure, structure.id] }) %>
+      <% #structure_array = Structure.all.map { |structure| [structure.nomStructure, structure.id] } %>
+      <%#= options_for_select(structure_array) %>
+      <%#= f.select(:structure_id, options_for_select(structure_array)) %>
+    </div>
+  </div>
+
+
+  <div class="control-group">
+    <%= f.label :lieu_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :lieu_id, options_for_select( Lieu.all.map { |lieu| [lieu.nomLieu, lieu.id]}) %>
+      <%# lieu_array = Lieu.all.map { |lieu| [lieu.nomLieu, lieu.id] } %>
+      <%#= options_for_select(lieu_array) %>
+      <%#= f.select(:lieu_id, options_for_select(lieu_array)) %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :picture, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :picture, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :heure_debut, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.time_select :heure_debut, :class => 'datetime_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :heure_fin, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.time_select :heure_fin, :class => 'datetime_select' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                events_path, :class => 'btn' %>
+  </div>
+<% end %>
+

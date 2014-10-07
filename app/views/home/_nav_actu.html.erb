@@ -1,0 +1,158 @@
+<div class="col-sm-3">
+  <!-- .row -->
+  <div class="row">
+    <div class="col-sm-12">
+
+    <% event_days=Event.all(:limit => 3)%>
+    <% if !event_days.nil?%>
+        <% event_days.each do |event_day| %>
+
+            <% lieu=Lieu.find_by_id(event_day.lieu_id)%>
+            <% structure=Structure.find_by_id(event_day.structure_id)%>
+
+            <!-- event -->
+            <div class="widget-container widget-profile boxed">
+              <div class="inner clearfix">
+                <div class="avatar"><%= image_tag(event_day.picture_url, :width => 200, :height => 100) if event_day.picture.present? %></div>
+                <span><%= event_day.date_debut.strftime("%A %d %B") %></span>
+                <span class="subtitle"><%=link_to event_day.titleEvent, root_path%></span>
+                <div class="follow">
+                  <a href="#" class="btn btn-round"><span>Voir</span></a>
+                  <div class="followers pull-right">
+                    <strong>à <%= event_day.heure_debut.strftime("%H")%>H : <%= event_day.heure_debut.strftime("%M")%></strong>
+                    <span><%= lieu.nomLieu%></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/ event -->
+
+        <% end %>
+    <% end %>
+
+
+    </div>
+
+
+
+    <div class="col-sm-12">
+      <!-- Profile -->
+      <div class="widget-container widget-profile boxed">
+        <div class="inner clearfix">
+          <a href="#" class="btn btn-blue btn-right"><span>Nous suivre</span></a>
+          <hr/>
+          <label class="label label-primary"> Facebook</label>
+          <label class="label label-info"> Twitter</label>
+          <label class="label label-danger"> Google+</label>
+        </div>
+      </div>
+      <!--/ Profile -->
+    </div>
+
+    <div class="col-sm-12">
+      <!-- search widget -->
+      <div class="widget-container widget-search boxed styled">
+        <div class="inner">
+          <form method="get" id="searchform" action="#">
+            <span class="btn btn-middle"><input type="submit" value="Search" /></span>
+            <div class="field_text lightPlaceholder"><input name="search" value="" type="text" placeholder="Type word here" /></div>
+          </form>
+        </div>
+      </div>
+      <!--/ search widget -->
+    </div>
+
+
+
+
+
+    <!-- /.row -->
+  </div>
+</div>
+<!--/ .row -->
+
+<div class="col-sm-2">
+
+  <!-- tabs -->
+  <div class="tabs-framed styled">
+    <div class="inner">
+
+      <div class="tab-content boxed">
+        <div class="tab-pane fade in active clearfix" >
+
+          <% if user_signed_in? %>
+              <% user= current_user%>
+
+
+              <ul class="nav nav-pills nav-stacked" style="text-align: justify">
+                <li class="active">
+                  <a href="#" style=""><i class="icon-user icon-white"></i> <%= current_user.login %></a>
+                </li>
+                <li class=""><%= link_to raw(" <center> <i class='icon-eye-open icon-black' style=''> Mon profil</i> </center>"), user, :class => 'well' %></li>
+                <li class=""><%= link_to raw(" <center> <i class='icon-pencil icon-black' style=''> Modifier profil</i> </center>"),edit_user_path(user), :class => 'well' %></li>
+
+                <li ><%= link_to raw(" <center> <i class='icon-off icon-black' style=''> Deconnexion</i></center>"), destroy_user_session_path, :method => :delete, :class => 'btn btn-large', :notice => 'nice' %></li>
+
+              </ul>
+
+              <div class="clearfix"></div>
+
+
+
+
+          <% else %>
+              <ul class="nav nav-pills nav-stacked " style="text-align: justify;">
+                <li class="active">
+                  <a href="#" ><i class="icon-user icon-white"></i> Profil</a>
+                </li>
+                <li class=""><%= link_to raw(" <i class='icon-hand-right icon-black' style=''> Se connecter</i>"), new_user_session_path, :class => 'well' %>
+                </li>
+                <li class=""> <%= link_to raw("<center> <i class='icon-plus icon-black' style=''> S'inscrire</i> </center>"), new_user_registration_path, :class => 'well'%></li>
+              </ul>
+
+          <% end %>
+        </div>
+
+
+      </div>
+      <br/>
+
+      <% if (user_signed_in? and (current_user.admin? || current_user.adminEvent? ) ) %>
+      <div class="inner">
+
+        <div class="tab-content boxed">
+
+          <ul class="nav nav-pills nav-stacked">
+            <li class="active">
+              <a href="#" >Espace Admin</a>
+            </li>
+            <li ><%= link_to "Espace Evenements", events_path,:class => 'well' %></li>
+            <li class="" ><%= link_to "Espace Actualites", actualites_path,:class => 'well' %></li>
+            <li class="" ><%= link_to "Espace Annonces", annonces_path,:class => 'well '%></li>
+            <li class="" ><%= link_to "Espace Utilisateurs", users_path,:class => 'well' %></li>
+          </ul>
+          <hr/>
+          <ul class="nav nav-pills nav-stacked">
+            <li class=""><%= link_to "Creer event", new_event_path, :class => 'well'%></li>
+            <li class=""><%= link_to "Créer catégory event", new_category_event_path,:class => 'well'%></li>
+            <li class=""><%= link_to "Créer lieu", lieus_path,:class => 'well'%></li>
+            <li class=""><%= link_to "Liste des events", events_path,:class => 'well'%></li>
+            <li class=""><%= link_to "Catégory des events", category_events_path,:class => 'well'%></li>
+
+          </ul>
+
+
+
+        </div>
+      </div>
+
+      <% end %>
+
+
+
+
+    </div>
+  </div>
+  <!--/ tabs -->
+
+</div>

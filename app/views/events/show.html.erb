@@ -1,0 +1,64 @@
+<%- model_class = Event -%>
+<div class="page-header">
+  <h1>Détails de l'événement</h1>
+</div>
+
+<table class="table table-bordered">
+  <%= link_to image_tag(@event.picture_url, :width => 240, :height => 120),event_path(@event) if @event.picture.present? %>
+  <tr>
+    <td><strong><%= model_class.human_attribute_name(:titleEvent) %>:</strong></td>
+    <td><%= @event.titleEvent %></td>
+  </tr>
+  <tr>
+    <td><strong><%= model_class.human_attribute_name(:descEvent) %>:</strong></td>
+    <td><%= @event.descEvent %></td>
+  </tr>
+  <tr>
+    <td><strong><%= model_class.human_attribute_name(:nombrePersonne) %>:</strong></td>
+    <td><%= @event.nombrePersonne %></td>
+  </tr>
+  <tr>
+    <td><strong><%= model_class.human_attribute_name(:date_debut) %>:</strong></td>
+    <td><%= @event.date_debut.strftime(" %d %B %Y") %></td>
+  </tr>
+  <tr>
+    <td><strong><%= model_class.human_attribute_name(:date_fin) %>:</strong></td>
+    <td><%= @event.date_fin.strftime(" %d %B %Y")  %></td>
+  </tr>
+  <tr>
+    <td><strong><%= model_class.human_attribute_name(:categoryEvent_id) %>:</strong></td>
+    <% categoryEvent =CategoryEvent.find_by_id(@event.categoryEvent_id) %>
+    <td><%= categoryEvent.titleCategory %></td>
+  </tr>
+  <tr>
+    <td><strong><%= model_class.human_attribute_name(:structure_id) %>:</strong></td>
+    <% structure =Structure.find_by_id(@event.structure_id) %>
+    <td><%= structure.nomStructure %></td>
+  </tr>
+  <tr>
+    <td><strong><%= model_class.human_attribute_name(:lieu_id) %>:</strong></td>
+    <% lieu =Lieu.find_by_id(@event.lieu_id) %>
+    <td><%= lieu.nomLieu %></td>
+  </tr>
+  
+  <tr>
+    <td><strong><%= model_class.human_attribute_name(:heure_debut) %>:</strong></td>
+    <td><%= @event.heure_debut.strftime("%Ih : %M") %></td>
+  </tr>
+  <tr>
+    <td><strong><%= model_class.human_attribute_name(:heure_fin) %>:</strong></td>
+    <td><%= @event.heure_fin.strftime("%Ih : %M") %></td>
+  </tr>
+</table>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              events_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_event_path(@event), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              event_path(@event),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

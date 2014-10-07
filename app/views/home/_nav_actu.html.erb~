@@ -1,0 +1,103 @@
+<div class="span3" style="width:22%" >
+              <ul class="nav nav-pills nav-stacked" style="text-align: justify">
+                      <li class="active">
+                        <a href="#">Nous suivre sur Facebook</a>
+                      </li>
+              </ul>
+
+
+
+                    <% if !event_days.nil? %>
+                    <% event_days.each do |event_day| %>
+                    <% if event_day.date_debut == Date.today %>
+                          <% lieu=Lieu.find_by_id(event_day.lieu_id)%>
+                          <% structure=Structure.find_by_id(event_day.structure_id)%>
+
+              <div  class="well sidebar-nav" style="background-color:#931869; width:100%;color:#fff;border:3px solid #044d47" >
+                  <ul class="nav nav-pills nav-stacked" style="text-align: justify; padding:10px">
+                    <li class="active" style="">
+                        <%= image_tag(event_day.picture_url, :width => 240, :height => 120) if event_day.picture.present? %>
+                        <%=link_to event_day.titleEvent, event_day%>
+                    </li>
+                    <li class="active" >
+                        <span style=" color:#000;">Date: </span>Le <%= event_day.date_debut.strftime("%d-%m-%Y")%>
+                    </li>
+                    <li class="active" >
+                        <span style=" color:#000;">Heure debut: </span> <%= event_day.heure_debut.hour%>H : <%= event_day.heure_debut.min%>
+                    </li>
+                    <li class="active" >
+                        <span style=" color:#000;">Lieu: </span><%= lieu.nomLieu%>
+                    </li>
+
+                  </ul>
+
+                </div>
+
+                <% end %>
+                <% end %>
+                <% end %>
+
+
+              <ul class="nav nav-pills nav-stacked" style="text-align: justify">
+                      <li class="active">
+                        <a href="#">Actualités  </a>
+                      </li>
+              </ul>
+                    <% actus=Actualite.all%>
+                    <% if !actus==nil?%>
+                    <% actus.each do |actu| %>
+
+              <div  class="well sidebar-nav" style="background-color:#931869; width:100%;color:#fff;border:3px solid #044d47" >
+                  <ul class="nav nav-pills nav-stacked" style="text-align: justify; padding:10px">
+                    <li class="active" style="">
+                        <%=link_to actu.titleActu, actu%>
+                        <%= image_tag(actu.picture_url, :width => 240, :height => 120) if actu.picture.present? %>
+
+                    </li>
+
+                    <li class="active" style="">
+                        <%= actu.contenu%>
+
+
+                    </li>
+
+
+
+                  </ul>
+
+                </div>
+
+
+                <% end %>
+                <% end %>
+
+
+
+              <% annonce = Annonce.all.shuffle[0] %>
+              <% if Annonce.count != 0 %>
+              <div  class="well sidebar-nav" style="background-color:#931869; width:100%;color:#fff;border:3px solid #044d47" >
+
+                  <ul class="nav nav-pills nav-stacked" style="text-align: justify; padding:10px">
+
+                    <li class="active" >
+                        <%= annonce.titleAnnonce%>
+                    </li>
+                    <li class="active" >
+                      <%= annonce.desc%>
+                    </li>
+
+                    <li class="active" style="">
+                        <%=link_to 'voir la suite', annonce%>
+                    </li>
+
+                  </ul>
+
+                </div>
+                <% end %>
+
+
+
+
+
+
+            </div><!--/span-->

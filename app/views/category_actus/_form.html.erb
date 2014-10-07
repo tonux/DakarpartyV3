@@ -1,0 +1,20 @@
+<%= form_for @category_actu, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :titleCategory, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :titleCategory, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :descCategory, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :descCategory, :class => 'text_area' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                category_actus_path, :class => 'btn' %>
+  </div>
+<% end %>

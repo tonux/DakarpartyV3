@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  titleAnnonce: MyString
+  descAnnonce: MyText
+  date_debut: 2013-03-23
+  date_fin: 2013-03-23
+  categoryAnnonce: 
+
+two:
+  titleAnnonce: MyString
+  descAnnonce: MyText
+  date_debut: 2013-03-23
+  date_fin: 2013-03-23
+  categoryAnnonce: 

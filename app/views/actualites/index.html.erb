@@ -1,0 +1,66 @@
+<%- model_class = Actualite -%>
+<div class="col-sm-10">
+<div class="page-header">
+  <h1>Liste des actualités</h1>
+</div>
+
+
+<% if @actualites.size == 0 %>
+    <div class="alert alert-success">
+      <a class="close" data-dismiss="alert"></a>
+      Liste des actualités est vide.
+
+      <%= link_to t('.new', :default => t("helpers.links.new")),
+                  new_actualite_path,
+                  :class => 'btn btn-primary' %>
+    </div>
+<% else %>
+
+    <% @actualites.reverse.each do |actualite| %>
+
+          <div class="col-sm-7"></div>
+        <div class="tab-content boxed">
+
+        <div class="tab-pane fade in active" >
+          <div class="tab-image pull-left">
+            <%= image_tag(actualite.picture_url, :width => 150, :height => 150) if actualite.picture.present? %>
+          </div>
+          <h4><%=link_to actualite.titleActu, actualite%></h4>
+          <p>
+            <%= actualite.contenu[0..230].gsub(/\s\w+\s*$/, '...')%>
+            <%=link_to raw('<button class="btn btn-round"> Lire la suite </button>') , actualite %>
+          </p>
+
+          <div class="slide-footer">
+            <i class="icon-calendar"> <%= actualite.created_at.strftime("%d %B %Y") %></i>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_actualite_path(actualite), :class => 'btn btn-mini' %>
+            <span class="pull-right buttons">
+                    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                                actualite_path(actualite),
+                                :method => :delete,
+                                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                                :class => 'btn btn-mini btn-danger' %>
+
+              <%=link_to raw('<button class="btn btn-sm btn-primary"> Lire la suite </button>') , actualite %>
+                </span>
+          </div>
+
+        </div>
+
+        </div>
+
+          <hr/>
+
+
+
+    <% end %>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_actualite_path,
+            :class => 'btn btn-primary' %>
+
+
+<%end%>
+
+</div>

@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  titleEvent: MyString
+  descEvent: MyString
+  nombrePersonne: 1
+  date_debut: 2013-03-23
+  date_fin: 2013-03-23
+  annuler: false
+  categoryEvent: 
+  structure: 
+  lieu: 
+  user: 
+
+two:
+  titleEvent: MyString
+  descEvent: MyString
+  nombrePersonne: 1
+  date_debut: 2013-03-23
+  date_fin: 2013-03-23
+  annuler: false
+  categoryEvent: 
+  structure: 
+  lieu: 
+  user: 
